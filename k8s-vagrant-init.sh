@@ -5,7 +5,7 @@ if [ ! -f Vagrantfile ]; then
   mkdir $HOME/k8s-vagrant && cd $HOME/k8s-vagrant
   vagrant init
   mv Vagrantfile Vagrantfile.orig 
-  git clone https://github.com/zvikaga/k8s-vagrant
+  git clone https://github.com/zvikaga/k8s-vagrant k8s-vagrant
   vagrant up
 EOJ
 else
