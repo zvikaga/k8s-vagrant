@@ -6,13 +6,14 @@ instance_name_prefix="k8s-node"
 
 Vagrant.configure("2") do |config|
   # always use Vagrants insecure key
-  config.ssh.insert_key = false
+  # config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", type: "nfs"
   config.vm.box = "bento/ubuntu-16.04"
 
   config.vm.provider :virtualbox do |v|
     # On VirtualBox, we don't have guest additions or a functional vboxsf
     # in CoreOS, so tell Vagrant that so it can be smarter.
+    #v.customize ['modifyvm', :id, '--natnet1', '172.16.99.0/24']
     v.check_guest_additions = false
     v.memory = 2048
     v.cpus = 1
@@ -32,8 +33,10 @@ Vagrant.configure("2") do |config|
 
       if i == 1
        host.vm.network :private_network, ip: "10.1.1.10"
+       #host.vm.network :public_network, ip: "172.16.99.11", auto_config: false
       else
        host.vm.network :private_network, ip: "10.1.1.#{i+10}"
+       #host.vm.network :public_network, ip: "172.16.99.#{i+10}", auto_config: false
       end
 
       # Install packages on all nodes
@@ -43,6 +46,14 @@ Vagrant.configure("2") do |config|
         # Configure the master.
         #host.vm.provision :file, :source => "master-config.yaml", :destination => "/tmp/vagrantfile-user-data"
         #host.vm.provision :shell, :inline => "mv /tmp/vagrantfile-user-data /var/lib/coreos-vagrant/", :privileged => true
+
+
+
+
+
+
+
+
 
         #host.vm.provision :shell, :inline => "echo '127.0.0.1\tlocalhost' > /etc/hosts", :privileged => true
         #host.vm.provision :shell, :inline => "mkdir -p /etc/kubernetes/manifests/", :privileged => true

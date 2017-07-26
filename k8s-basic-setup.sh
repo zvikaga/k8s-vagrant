@@ -41,7 +41,7 @@ apt-get install -y kubelet kubeadm
 
 
 echo -e "\nInitializing the K8S cluster for the first time....\n"
-kubeadm init
+sudo kubeadm init –api-advertise-addresses=10.1.1.10
 
 
 echo -e "\nConfiguring kubectl for the first time....\n"

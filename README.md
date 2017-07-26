@@ -1,5 +1,6 @@
 # k8s-vagrant
 This repository is for a very basic Kubernetes cluster setup over Vagrant VMs.
+Warning: It's for ongoing experimental efforts only in a very specific environment, please don't use it!!
 
 1) Installing the Vagrant + Virtualbox environment software and VMs
    
